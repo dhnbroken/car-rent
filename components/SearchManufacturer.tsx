@@ -6,7 +6,7 @@ import { Combobox, Transition } from '@headlessui/react';
 import Image from 'next/image';
 import { manufacturers } from '@/constants';
 
-const SearchManufacturer = ({ manufacturer, setManufacturer }: IManufacturerProps) => {
+const SearchManufacturer = ({ selected, setSelected }: IManufacturerProps) => {
   const [query, setQuery] = useState('');
   const filteredManufacturers =
     query === ''
@@ -15,7 +15,7 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: IManufacturerProp
           return person.toLowerCase().replace(/\s+/g, '').includes(query.toLowerCase());
         });
   return (
-    <Combobox value={manufacturer} onChange={setManufacturer}>
+    <Combobox value={selected} onChange={setSelected}>
       <div className="relative w-full">
         <Combobox.Button className="absolute top-[14px]">
           <Image src="/car-logo.svg" alt="Car logo" width={20} height={20} className="ml-4" />
@@ -39,7 +39,7 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: IManufacturerProp
         >
           <Combobox.Options>
             {filteredManufacturers.length === 0 && query !== '' ? (
-              <Combobox.Option key={manufacturer} value={manufacturer} className="search-manufacturer__option">
+              <Combobox.Option key={selected} value={selected} className="search-manufacturer__option">
                 Create: "{query}"
               </Combobox.Option>
             ) : (

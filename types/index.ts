@@ -6,15 +6,25 @@ export interface ICustomButtonProps {
   btnType?: 'button' | 'submit';
   containerStyles?: string;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
+  textStyles?: string;
+  rightIcon?: string;
+  isDisabled?: boolean;
+}
+
+export interface OptionProps {
+  title: string;
+  value: string;
 }
 
 export interface ICustomFilter {
   title: string;
+  options: OptionProps[];
+  setFilter: (filter: string) => void;
 }
 
 export interface IManufacturerProps {
-  manufacturer: string;
-  setManufacturer: (manufacturers: string) => void;
+  selected: string;
+  setSelected: (selected: string) => void;
 }
 
 export interface ICar {
@@ -35,4 +45,24 @@ export interface ICar {
 export interface ICars {
   car: ICar;
   message: string;
+}
+
+export interface ICarDetailsProps {
+  isOpen: boolean;
+  closeModal: () => void;
+  car: ICar;
+}
+
+export interface FilterProps {
+  model: string;
+  manufacturer: string;
+  year: string;
+  fuel: string;
+  limit: string;
+}
+
+export interface ShowMoreProps {
+  pageNumber: number;
+  isNext: boolean;
+  setLimit: (limit: number) => void;
 }
